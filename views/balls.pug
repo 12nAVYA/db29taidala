@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1= title
+  p Search results balls  
+  p 
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let balls = [
+                    {
+                        "name": "basket ball",
+                        "color": "black" ,
+                        "count": 5
+                    },
+                    {
+                        "name": "volley ball",
+                        "color": "brown" ,
+                        "count": 4
+                    },
+                    {
+                        "name": "foot ball",
+                        "color": "light brown" ,
+                        "count": 6
+                    },                   
+                ]
+            each v,index in balls
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.name}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.color}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.count}
+
+  script.                
+        function buy(intemNo)
+        {
+              alert(`you purchased Item ${intemNo+1}`)
+        }
