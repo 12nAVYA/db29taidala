@@ -10,10 +10,18 @@ exports.balls_list =  async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
    };
-// for a specific Balls.
-exports.balls_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Balls detail: ' + req.params.id);
-};
+// for a specific balls.
+exports.balls_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await balls.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
+
 // Handle Balls create on POST.
 exports.balls_create_post = async function(req, res) {
     console.log(req.body)
@@ -38,9 +46,26 @@ exports.balls_create_post = async function(req, res) {
 exports.balls_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Costume delete DELETE ' + req.params.id);
 };
-// Handle Balls update form on PUT.
-exports.balls_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Balls update PUT' + req.params.id);
+
+// Handle balls update form on PUT.
+exports.balls_update_put = async function(req, res) {
+ console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+ try {
+ let toUpdate = await balls.findById( req.params.id)
+ // Do updates of properties
+ if(req.body.balls_type)
+ toUpdate.name = req.body.name;
+ if(req.body.color) toUpdate.color = req.body.color;
+ if(req.body.count) toUpdate.count = req.body.count;
+ let result = await toUpdate.save();
+ console.log("Sucess " + result)
+ res.send(result)
+ } catch (err) {
+ res.status(500)
+ res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+ }
 };
 
 // VIEWS 
