@@ -1,0 +1,16 @@
+extends layout
+block content
+ h1= title
+ - let ballsname = toShow.name
+ - let ballscolor = toShow.color
+ - let ballscount = toShow.count
+ div
+ div.row
+ div(class='ballsAttr mr-3') balls name is:
+ div #{ballsname}
+ div.row
+ div(class='ballsAttr mr-3') balls color is:
+ div #{ballscolor}
+ div.row
+ div(class='ballsAttr mr-3') balls count is:
+ div #{ballscount}
