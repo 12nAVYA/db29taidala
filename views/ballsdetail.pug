@@ -1,16 +1,20 @@
 extends layout
 block content
  h1= title
+ - let ballsid = toShow._id
  - let ballsname = toShow.name
  - let ballscolor = toShow.color
  - let ballscount = toShow.count
  div
  div.row
+ div(class='ballsAttr mr-3') balls ID is:
+ div #{ballsid}
+ div.row
  div(class='ballsAttr mr-3') balls name is:
  div #{ballsname}
  div.row
- div(class='ballsAttr mr-3') balls color is:
+ div(class='costumeAttr mr-3') balls color is:
  div #{ballscolor}
  div.row
- div(class='ballsAttr mr-3') balls count is:
+ div(class='ballsAttr mr-3') balls Count is:
  div #{ballscount}
