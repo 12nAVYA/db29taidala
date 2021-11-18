@@ -10,4 +10,6 @@ router.get('/detail', balls_controlers.balls_view_one_Page);
 router.get('/create', balls_controlers.balls_create_Page);
 /* GET create update page */
 router.get('/update', balls_controlers.balls_update_Page);
+/* GET create costume page */
+router.get('/delete', balls_controlers.balls_delete_Page);
 module.exports = router; 
