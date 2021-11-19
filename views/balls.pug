@@ -5,18 +5,19 @@ extends layout
 block content
   h1= title
   - let items = results
-  p Search results balls
+  p Search results balls 
   p 
-  div(class="container-fluid")
-        div(class="row")
-            each v,index in items 
-                div(class="card text-white bg-dark mb-3" class='col' class='card' class='card-body' class='card-text' onclick='buy('+index+')') #{o} 
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.name}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.model}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.frequency}
-                a(href="balls/update/?id="+v.id) Update
-                a(href="balls/detail/?id="+v.id) View
-                a(href="balls/delete/?id="+v.id) Delete
+  div(class="container-fluid") 
+    div(class="row m-1") 
+      each item in items  
+        - let destination = `dispatch(\"/balls/update?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.color}) is #{item.count} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+   
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    }               
   script.                
         function buy(intemNo)
         {
