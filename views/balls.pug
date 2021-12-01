@@ -10,9 +10,17 @@ block content
   div(class="container-fluid") 
     div(class="row m-1") 
       each item in items  
-        - let destination = `dispatch(\"/balls/update?id=${item._id}\")` 
-        div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.color}) is #{item.count} 
-          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+        - let destination = `dispatch(\"/balls/update?id=${item._id}\")`
+        - let details = `dispatch(\"/balls/detail?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.name}(#{item.color}) is #{item.count}
+        <br><br>
+            span(class="btn btn-info", onclick= details) Details
+            <br>
+            a(class="btn btn-danger", href="/balls/delete/?id="+item._id) Delete
+            <br> 
+            button.btn( class="btn-primary ml-1", onclick= destination) Update
+            <br>
+            a(class="btn btn-danger", href="/balls/create") Create 
    
   script. 
     function dispatch(path){ 
